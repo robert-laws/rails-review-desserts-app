@@ -1,0 +1,21 @@
+<% provide title: 'Store Details' %>
+
+<%= render partial: 'shared/menu' %>
+
+<h1>Store Details</h1>
+
+<% flash.each do |type, message| %>
+  <%= content_tag :div, message %>
+<% end %>
+
+<p>
+  <strong>Name:</strong> <%= @store.name %>
+</p>
+
+<p>
+  Location: <%= @store.location.name %>
+</p>
+
+<hr>
+
+<%= link_to 'Edit this Store', edit_store_path(@store) %>

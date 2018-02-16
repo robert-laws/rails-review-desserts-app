@@ -1,0 +1,18 @@
+<% provide title: 'All Stores' %>
+
+<%= render partial: 'shared/menu' %>
+
+<h1>All Stores</h1>
+
+<ul>
+  <% @stores.each do |store| %>
+    <li style="margin-top: 10px;">
+      Name: <%= link_to store.name, store_path(store) %><br>
+      <%= render partial: 'locations/location', locals: { location: store.location }%>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to 'Create a New Store', new_store_path %>
