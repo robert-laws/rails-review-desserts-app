@@ -1,0 +1,26 @@
+<%= provide :title, 'Individual Dessert' %>
+
+<%= render partial: 'shared/menu' %>
+
+<h1>Dessert Details</h1>
+
+<% flash.each do |type, message| %>
+  <%= content_tag :div, message %>
+<% end %>
+
+<p>
+  Name: <%= @dessert.name %>
+</p>
+<p>
+  Price: $<%= @dessert.price %>
+</p>
+<p>
+  Toppings:<br>
+  <%= render partial: 'toppings/topping', collection: @dessert.toppings %>
+</p>
+
+<hr>
+
+<%= link_to 'Edit Dessert', edit_dessert_path(@dessert) %>
+<br>
+<%= link_to 'View all Desserts', desserts_path %>

@@ -1,0 +1,37 @@
+<% if @dessert.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@dessert.errors.count, 'error') %> 
+      prevented the dessert from being saved.
+    </h2>
+    <ul>
+      <% @dessert.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @dessert do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :price %>
+  <%= f.number_field :price %><br>
+  <div style="margin: 10px 0;">
+    Topping Choices:<br>
+    <%= f.collection_check_boxes :topping_ids, Topping.all, :id, :name %>
+  </div>
+
+  <div>
+    Add a New Topping:<br>
+    <%= f.fields_for :toppings, @dessert.toppings.build do |topping_field| %>
+      <%= topping_field.label :name %>
+      <%= topping_field.text_field :name %>
+    <% end %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

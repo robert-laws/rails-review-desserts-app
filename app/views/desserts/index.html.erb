@@ -1,0 +1,18 @@
+<%= provide :title, 'All Desserts' %>
+
+<%= render partial: 'shared/menu' %>
+
+<h1>All Desserts</h1>
+
+<ul>
+  <% @desserts.each do |dessert| %>
+    <li style="margin-top: 10px;">
+      <%= link_to dessert.name, dessert_path(dessert) %> -- <%= link_to 'Edit Dessert', edit_dessert_path(dessert) %> -- <%= link_to 'Delete Dessert', dessert, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= render partial: 'toppings/topping', collection: dessert.toppings %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to 'Create a New Dessert', new_dessert_path %>
